@@ -16,6 +16,12 @@ namespace repo1.Controllers
         {
             return new string[] { "value1", "value2" };
         }
+        // GET api/values
+        [HttpGet]
+        public ActionResult<IEnumerable<string>> Getc()
+        {
+            return new string[] { "value1", "value2" };
+        }
 
         // GET api/values/5
         [HttpGet("{id}")]
