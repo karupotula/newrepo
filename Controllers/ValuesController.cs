@@ -18,7 +18,7 @@ namespace repo1.Controllers
         }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Getc()
+        public ActionResult<IEnumerable<string>> Ge2tc()
         {
             return new string[] { "value1", "value2" };
         }
