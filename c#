@@ -1,0 +1,204 @@
+Abstract Class:
+	-> half defined parent class, 
+	-> Cannot be instantiated -  dont want to update the class by creating the instance
+	-> Set some rules what  derived classes must implement.
+	-> share common functionality to its child classes.
+	-> All derived class must implement abstract definitions.
+	-> Abstract classess are inherited
+   abstract Constructor -> To initialise the fields before even the child classes initialisation.
+		-> This is first called when the child class is initialised.
+   virtual in abstract class -> some inherited classes will have this default implementation and others can override.
+======================================================	
+Interface:
+	-> Interface is a contract b/w the client and callee class.
+	-> Interfaces are to be implemented.
+	-> It enforces to implement all the functions
+	-> Adv - We will have the impact analysis. 
+	-> Planning phase of abstraction.
+	-> Multiple inheritance.
+	
+	c# 8.0 - has default implementation. private protected can be used.
+======================================================	
+Explicit Interface:
+	-> When a class is implementing 2 interfaces which has same methods in both this comes into picture.
+	-> implementing  class method should not have any access modifier. it  has to be like  i1.method(){}
+	-> can only invoke by interface reference variable.
+======================================================
+Virtual Override
+	-> Virtual is used to tell the inherited classes that it can be overridden
+	-> override used to change the logic or implementation of a method in the base class.
+======================================================
+Shadowing:
+	-> virtual method in base class - is replaced either both logic or signature of metod in child method. 
+	-> Ex - policy No with string and without string.
+======================================================	
+IS and As: 
+	AS -> cast the object to a specific type. if fails returns null.
+	IS -> check the type with is returns boolean
+	CAST VS AS - Cast operator throws exception if it is not convertible but AS operator returns null.
+
+======================================================
+Static:
+	-> Group unrelated objects or methods into a class. Encapsulation violation
+	-> Share common data.
+	-> cache data
+	-> Class with Fixed behavior. 
+	-> Cannot create instances for static class.
+	-> OOP concepts doesnt work in static classes.
+======================================================	
+
+Static constructor: 
+	-> It is only called once by the compiler. One instance is created in memory
+	-> Static members and methods initialization.
+	-> Case where certain logic has to be  called once during initialisation.
+======================================================
+Constructor: 
+	-> We can call default constructor from parameterized constructor  using-> ctor(string name) :this()
+	-> We can call base class constructor explicitly by :base() and parameterized as :base(param1, param2..)
+	-> Base class should have a default constructor if child classes neeeds to have a constructor().
+======================================================
+Copy Constructor: -> passing the same class instance as parameter in the constructor.
+======================================================	
+sealed
+	-> Specialized class where it need not to be further extended or can be overriden. 
+	-> This class cannot be inherited.
+	-> database helper class is the example.
+
+======================================================
+Delegate:
+	-> Act as like a representative to commnicate b/w the two things.
+	-> Main use is callback
+	-> How they do is use they hold reference to the methods.
+	-> Pointer to function  reference. Allows methods to be passed as parameters.
+	-> Typecheck the input function
+	"Please feel free to assign any method that matches this signature to the delegate and it will be called each time my delegate is called"
+	->Multicast delegate.. are naked as the delegate can be made null it cannot be publisher subscriber.
+======================================================
+
+Event: 
+   -> Wrapper around the delegate.  Use Publisher subscriber model. can be multiple subscribers.
+   -> Events enable a class or object to notify other classes or objects when something of interest occurs. 
+   -> The class that sends (or raises) the event is called the publisher and the classes that receive (or handle) the event are called subscribers.
+   -> user actions...
+======================================================
+Access Modifiers: Accessibility of members, classes.. public, internal, protected, private.
+======================================================
+Stack Heap memory types:
+	Stack   -> Primitive types are saved in stack memory
+			-> Both reference and data is stored in stack.
+			
+	Heap	-> Reference to heap is stored in stack memory,
+			-> actual data is stored in heap memory.
+======================================================
+Garbage collection:
+	-> Compiler is responsible for GC.
+	-> GC is responsible for memory management
+	-> it clears the dead objects.
+	
+when?	->  allocated threshold memory reaches
+	-> Low on memory
+	-> GC.Collect explicit call.
+	
+Find?
+	
+	-> 3 phases
+	-> Get list of live objects.
+	-> relocates the live objects
+	-> compact the live objects by removing the dead objects.
+	
+	-> 3 memory generations 0, 1, 2.
+
+Dispose: Idisposable interface
+	-> unmanaged resources
+	-> Dispose internally calls close.
+	-> Dispose completely release the connection object - db connection example.
+	
+Finalize: - destructor
+======================================================
+Task: 
+	-> represents  async.. operation.
+	-> asynchronous programming - has callbacks and continue with if we have multiple method calls. Hard to read
+	-> Blocking methods getawaiter.getresult
+	-> 
+
+Task Parallel library:
+======================================================
+async await 
+	-> State machine produced that uses goto 
+======================================================
+Thread
+======================================================
+Method Overloading:
+	-> When we need to do same operation but with different logic/different number of parameters
+	-> One way of implementing polymorphism.
+	-> same Name with same number of params and different return type gives compile error.
+======================================================
+Operator Overloading
+======================================================
+Generics
+======================================================
+enum - group of constants, with numerical values. readability, maintainability.
+======================================================
+Extension Methods:
+	-> Add additional methods to the existing type without changing the original source code, without inheritance.
+	-> We need to create a static class for extensions method
+	-> non-static method receives an implicit parameter - this. Extension methods are not called in the context of the object
+		on which the method is declared, therefore there is no way to pass them the this reference, 
+		therefore they must be static.
+
+Array ArrayList Generic lists Hashtable dictionary
+
+Dependency Injection 
+
+OOP
+
+SOLID
+
+contravariance vs covariance
+
+getter/setters:
+	-> hiding the internal implementation.(Encapsulation)
+	-> declare or obtain the values of variables mainly private.
+	-> maintainability, if there are some changes other than returning value need to look back wherever it has been used.
+	-> access levels get may be public set is protected.
+======================================================	
+Cohesion: Both Cohesion and Coupling deals with quality of OO design
+	-> How the members/methods within a module are related.
+	-> intramodule approach.
+	-> how closely the members.methods are related to each other that good is design.
+======================================================
+Coupling:
+	-> How module is dependent on other modules. - degree of interdependence b/w modules
+	-> Inter module approch
+	-> good design is to loosly couple the modules as much as we can.
+======================================================	
+Composition:
+	-> Special type of aggregation.
+	-> Child objects depend on the parent objects.
+	-> child objects doesnt have its own lifecycle. Ex if no policy no claims
+	-> if parent dies child also dies.
+======================================================	
+Association:
+	-> Relation ship b/w objects. 
+	-> one - one, one -many...
+======================================================
+Aggregation:
+	-> lives of both objects are independent of each other
+	-> child object can have its own lifecycle.
+	-> Ex: employees can exist without department
+
+==================================================================================
+
+TestCases:
+	NUnit - TestFixture. Test[TestCase()] - for parameters.  Setup, Teardown - first and last
+	xUnit - TestClass. Fact, Theory[InlineData()]- for parameters, constructor - idisposable
+ 
+ 
+
+Answer
+Do not define a structure unless the type has all of the following characteristics:
+
+It logically represents a single value, similar to primitive types (integer, double, and so on).
+It has an instance size smaller than 16 bytes.
+It is immutable.
+It will not have to be boxed frequently.
