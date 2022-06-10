@@ -1,0 +1,174 @@
+NGRX: State management framework
+	-> Uses redux pattern for smoothening state management process.
+		-> single store
+		-> immutable state object - cannt modify the state directly.
+		-> use reducers to modify the object.
+	-> Object tree with module and data together.
+	-> reducers are used to modify the state.
+	-> Actions which maintain type and payload
+	-> Effects - perform additional task apart from reducers do
+	-> Selectors - to get slices of the store
+
+
+Promise vs Observable  - Are promises relevant
+Promise
+	-> returns/emits one value
+	-> cannot unsubscribe
+	-> States - pending, fullfilled, rejected
+	-> methods 
+			.all -> waits until all promises are resolved/rejected
+			.allsettled -> waits untill all promises are settled
+			.race -> waits untill any of the promise is resolved/rejected
+			.reject -> It returns a new Promise object that is rejected with the given reason
+			.resolve -> It returns a new Promise object that is resolved with the given value
+	
+Observable
+	-> emits multiple values
+	-> advantage over promise is it can unsubscribe
+
+
+appmodule
+	-> provider
+		-> appinitializer - core library - load configurations from json.
+		-> httpinterceptor - common/http library - class implements httpinterceptor - intercept method is called by default.
+			-> intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+					return next.handle(modifiedRequest);
+			}
+declarations:
+	-> components, directives, pipes within a module are available to other comp...
+providers:
+	-> for injecting the services required by components, services...
+imports:
+	-> components, directives.. that are exported in other modules are available to use in this module.
+
+approuter:
+	-> import to ngmodule using routermodule.forroot(). 
+		-> params-> routes, config - usehash, inital navigation, scrollpositionafternavigation...
+	-> routes collection of type Routes.
+	initialNavigation: it starts before root component is created.
+		-> server side rendering
+		-> complex initialization logic
+		-> bootstrap is blocked until initialNavigation is done.
+		
+Entry Components:
+	->kind of deprecated with view engine. In ivy compiler dont need to add explicity.
+	VIEW ENGINE:
+		->	do analysis of the components based on the ngmodule config.. and html template.
+		-> it  does not generate factories for the components if not refrenced in template and not added in entry components.
+		
+	IVY:-> typescript class if there is decorator @component then compiler  will emit factory for that class in same file.
+	
+Login:
+	3rd party library - angular-oauth2-oidc - it has the configurations and methods.
+	-> check validity of token - load user profile - get users.
+	-> check for session related events like terminated, failed, changed and redirect user to logout.
+
+authgaurds:
+	-> preprocessing logic before navigating to any component/module.
+	-> canactivate
+		->access to the components
+	-> CANDEACTIVATE
+		-> while moving away from the component checks whether the data is saved or not. Ex - data entry  component.
+		-> A route can have more than one deactivate gaurd
+		-> need to  pass component also - to check dirty changes.
+	-> load - similar to canactivate
+	-> canactivatechildren - similar to canactivate
+	
+	-> restrict the access to the componets/pages dont have access
+	-> RESOLVE GAURD 
+		-> load certain data before navigating to the component. 
+		->Instead of loading empty html without data on first go.. using this we can load both html and data.
+		-> this is called after all the gaurds.
+	
+
+pipes:
+	-> pipes are functions that takes some input and transforms the input and return  as output.
+	-> pipes can be chained
+	-> pure - single instance is used throught all components. same input - same output (no state)
+			-> angular calls the pipe only when the input changes.
+		
+	-> impure
+		-> called for every change detection cycle regardless of change  in  input.
+	-> pipe implements pietransform interface
+	
+FormGroup, FormControl, FormArray:
+
+Reactive FOrms:
+patchvalue:
+setvalue:
+
+Template Forms:
+
+
+Libraries: -> public-api.ts
+	-> npm generate library name..
+	-> npm pack of dist folder generates .tgz file package
+	-> install pack file name 
+
+Zones:
+	-> Angular uses zones for async operations.. to detect changes in places where data is mutated and it runs change detection.. 
+ngZone: 
+	-> zone apis are used to create custom zone - where consumers can run code inside and outside of angular zone.
+	-> service where third party apis run in angular zone when ngZone.run() is called.
+	-> for every async call zone are called and change detection runs..
+	-> Ex: mouseevents .. NgZone.runOutsideAngular()
+
+Testing:
+
+Jasmine: Framework to write unit tests. Designed so that non technical people can read the tests.
+	-> TestBed, TestSuite - Describe, TestSpec - it, Assert - expecation..
+	-> spyOn for mocking the services and stub data. 
+	-> expectations - tobetruthy, tobeequals, tobelessthan...
+
+Karma:
+	-> tool for executing test cases against source code inside a browser env.
+	-> Karma watches file when updated it runs the test again.
+	-> coverageIstanbulReporter - thresholds -> conf. percentage of code coverage in thresholds attribute in karma.conf.ts
+	
+	-> ng test --code-coverage for code coverage.
+	-> test-options-codeCoverage : true  in angular.json to test code coverage every time test runs
+
+
+Operators:
+	Pipe: used to allow multiple operators applied on a source observable
+	Map: 
+		-> computation on stream of values of input observable outputs a new observable
+	MapTo:
+		-> Maps every source value to same output value
+	Reduce: accumulates all the values
+	ConcatMap:
+		-> Maps each value to an observable and then flattens all inner observables 
+	CombineLatest:
+	distinctuntilchanged:
+		-> same values repeated makes into 1 - 2 2 3 3 5 4 4 to 2  3 5 4 
+	
+	MergeMap:
+		->  Menu Items keeps all the requests
+	SwitchMap:
+		-> typeahead  cancels previous http requests.
+	FlatMap: -> flattens only one level
+	ForkJoin:
+		->Will take any number of observable as array/dictionary as input and wait till the observable to complete return latest value emitted from observable
+		->if one failes error response is returned for all.
+		
+	Debounce:
+	DebounceTime:
+	
+	Concat
+	Skip2
+	take
+	takeWhile
+
+
+RXJS:
+	Observable
+	Subject
+	Behaviour Subject
+	Replay Subject
+	
+Change Detection  strategy:
+	Default:
+	Push:
+
+	
+Angular decorator vs annotation?
